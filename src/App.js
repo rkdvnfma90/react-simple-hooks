@@ -9,6 +9,7 @@ import { useBeforeLeave } from './hooks/useBeforeLeave.js'
 import { useFadein } from './hooks/useFadein.js'
 import { useNetwork } from './hooks/useNetwork.js'
 import { useScroll } from './hooks/useScroll.js'
+import { useFullscreen } from './hooks/useFullscreen.js'
 import './App.css'
 
 const App = () => {
@@ -71,14 +72,26 @@ const App = () => {
   /* useScroll */
   const { y } = useScroll()
 
+  /* useFullscreen */
+  const onFullscreen = (isFull) => {
+    console.log(isFull ? '풀스크린 입니다.' : '풀스크린이 아닙니다.')
+  }
+  const { fullScreenElement, triggerFull, exitFull } = useFullscreen(
+    onFullscreen
+  )
+  const fullScreenButton = useClick(triggerFull)
+  const exitFullScreenButton = useClick(exitFull)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
+
       {/* useInput */}
       <section className="app-hooks">
         <h3 className="app-desc">useInput : </h3>
         <input placeholder="Name" {...name} />
       </section>
+
       {/* useTab */}
       <section className="app-hooks">
         <h3 className="app-desc">useTab : </h3>
@@ -89,24 +102,29 @@ const App = () => {
         ))}
         {currentItem.content}
       </section>
+
       {/* useClick */}
       <section className="app-hooks">
         <h3 ref={title}>Suprise Suprise The King is back!</h3>
       </section>
+
       {/* useConfirm */}
       <section className="app-hooks">
         <button ref={octagon}>The King!</button>
       </section>
+
       {/* usePreventLeave */}
       <section className="app-hooks">
         <button ref={protectClick}>Protect</button>
         <button ref={unProtectClick}>Unprotect</button>
       </section>
+
       {/* useFadein */}
       <section className="app-hooks">
         <h3 {...fadeinH2}>Suprise!!</h3>
         <p {...fadeinP}>lorem ipsum....</p>
       </section>
+
       {/* useNetwork */}
       <section className="app-hooks">{online ? 'online' : 'offline'}</section>
 
@@ -122,6 +140,18 @@ const App = () => {
         >
           ⚡Conor Mcgregor⚡
         </h2>
+      </section>
+
+      {/* useFullscreen */}
+      <section className="app-hooks">
+        <div ref={fullScreenElement}>
+          <img
+            src="https://post-phinf.pstatic.net/MjAyMDAxMjFfMzAw/MDAxNTc5NTg4MTMzMjgy.ePw8U5DSAFGeXC6zd3v45-MGkXOX3h7UIxhOrw6onYUg.h-tiamMAtqU3vLDg7V7YcBtait7mDbjuBITflu2QM88g.JPEG/571dadc12c3b94df40c354c6424528d3.jpg?type=w1200"
+            alt="conor"
+          />
+          <button ref={exitFullScreenButton}>Exit Fullscreen!</button>
+        </div>
+        <button ref={fullScreenButton}>Make Fullscreen!</button>
       </section>
     </div>
   )

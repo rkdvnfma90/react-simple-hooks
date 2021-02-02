@@ -21,6 +21,11 @@
   margin-bottom: 30px;
 }
 
+.app-hooks div {
+  display: flex;
+  flex-direction: column;
+}
+
 .app-desc {
   margin-right: 10px;
 }
