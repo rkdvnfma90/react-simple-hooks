@@ -11,6 +11,7 @@ import { useNetwork } from './hooks/useNetwork.js'
 import { useScroll } from './hooks/useScroll.js'
 import { useFullscreen } from './hooks/useFullscreen.js'
 import { useNotification } from './hooks/useNotification.js'
+import { useAxios } from './hooks/useAxios.js'
 import './App.css'
 
 const App = () => {
@@ -88,6 +89,12 @@ const App = () => {
   const triggerNotification = useNotification('합격하셨습니다.', options)
   const notiButton = useClick(triggerNotification)
 
+  /* useAxios */
+  const { loading, data, error, refetch } = useAxios({
+    url: 'https://jsonplaceholder.typicode.com/posts',
+  })
+  const reFetchButton = useClick(refetch)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
@@ -163,6 +170,15 @@ const App = () => {
       {/* useNotification */}
       <section className="app-hooks">
         <button ref={notiButton}>Notification!</button>
+      </section>
+
+      {/* useAxios */}
+      <section className="app-hooks">
+        <div>
+          <h2>status : {data && data.status}</h2>
+          <h2>loading : {loading && '로딩중...'}</h2>
+          <button ref={reFetchButton}>Re fetch</button>
+        </div>
       </section>
     </div>
   )
