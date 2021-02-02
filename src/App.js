@@ -8,6 +8,7 @@ import { usePreventLeave } from './hooks/usePreventLeave.js'
 import { useBeforeLeave } from './hooks/useBeforeLeave.js'
 import { useFadein } from './hooks/useFadein.js'
 import { useNetwork } from './hooks/useNetwork.js'
+import { useScroll } from './hooks/useScroll.js'
 import './App.css'
 
 const App = () => {
@@ -67,16 +68,17 @@ const App = () => {
   }
   const online = useNetwork(handleNetworkChange)
 
+  /* useScroll */
+  const { y } = useScroll()
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
-
       {/* useInput */}
       <section className="app-hooks">
         <h3 className="app-desc">useInput : </h3>
         <input placeholder="Name" {...name} />
       </section>
-
       {/* useTab */}
       <section className="app-hooks">
         <h3 className="app-desc">useTab : </h3>
@@ -87,31 +89,40 @@ const App = () => {
         ))}
         {currentItem.content}
       </section>
-
       {/* useClick */}
       <section className="app-hooks">
         <h3 ref={title}>Suprise Suprise The King is back!</h3>
       </section>
-
       {/* useConfirm */}
       <section className="app-hooks">
         <button ref={octagon}>The King!</button>
       </section>
-
       {/* usePreventLeave */}
       <section className="app-hooks">
         <button ref={protectClick}>Protect</button>
         <button ref={unProtectClick}>Unprotect</button>
       </section>
-
       {/* useFadein */}
       <section className="app-hooks">
         <h3 {...fadeinH2}>Suprise!!</h3>
         <p {...fadeinP}>lorem ipsum....</p>
       </section>
-
       {/* useNetwork */}
       <section className="app-hooks">{online ? 'online' : 'offline'}</section>
+
+      {/* useScroll */}
+      <section className="app-hooks">
+        <h2
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            color: y > 100 ? 'red' : 'blue',
+          }}
+        >
+          ⚡Conor Mcgregor⚡
+        </h2>
+      </section>
     </div>
   )
 }
