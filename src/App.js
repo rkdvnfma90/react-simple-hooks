@@ -4,6 +4,7 @@ import { useTabs } from './hooks/useTabs.js'
 import { useTitle } from './hooks/useTitle.js'
 import { useClick } from './hooks/useClick.js'
 import './App.css'
+import { useConfirm } from './hooks/useConfirm.js'
 
 const App = () => {
   /* useInput */
@@ -33,6 +34,16 @@ const App = () => {
   }
   const title = useClick(sayConor)
 
+  /* useConfirm */
+  const theKing = () => console.log('Suprise Suprise The King is back!')
+  const abort = () => console.log('bye!')
+  const enterTheOctagon = useConfirm(
+    'Would you like to enter the Octagon?',
+    theKing,
+    abort
+  )
+  const octagon = useClick(enterTheOctagon)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
@@ -57,6 +68,11 @@ const App = () => {
       {/* useClick */}
       <section className="app-hooks">
         <h3 ref={title}>Suprise Suprise The King is back!</h3>
+      </section>
+
+      {/* useConfirm */}
+      <section className="app-hooks">
+        <button ref={octagon}>The King!</button>
       </section>
     </div>
   )
