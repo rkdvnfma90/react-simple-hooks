@@ -4,7 +4,6 @@ export const useInput = (initialValue, validator) => {
   const [value, setValue] = useState(initialValue)
   const onChange = (event) => {
     const targetValue = event.target.value
-
     let isValid = true
 
     if (typeof validator === 'function') {
