@@ -3,8 +3,9 @@ import { useInput } from './hooks/useInput.js'
 import { useTabs } from './hooks/useTabs.js'
 import { useTitle } from './hooks/useTitle.js'
 import { useClick } from './hooks/useClick.js'
-import './App.css'
 import { useConfirm } from './hooks/useConfirm.js'
+import { usePreventLeave } from './hooks/usePreventLeave.js'
+import './App.css'
 
 const App = () => {
   /* useInput */
@@ -44,6 +45,11 @@ const App = () => {
   )
   const octagon = useClick(enterTheOctagon)
 
+  /* usePreventLeave */
+  const { enablePrevent, disablePrevent } = usePreventLeave()
+  const protectClick = useClick(enablePrevent)
+  const unProtectClick = useClick(disablePrevent)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
@@ -73,6 +79,12 @@ const App = () => {
       {/* useConfirm */}
       <section className="app-hooks">
         <button ref={octagon}>The King!</button>
+      </section>
+
+      {/* usePreventLeave */}
+      <section className="app-hooks">
+        <button ref={protectClick}>Protect</button>
+        <button ref={unProtectClick}>Unprotect</button>
       </section>
     </div>
   )
