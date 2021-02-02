@@ -6,6 +6,7 @@ import { useClick } from './hooks/useClick.js'
 import { useConfirm } from './hooks/useConfirm.js'
 import { usePreventLeave } from './hooks/usePreventLeave.js'
 import { useBeforeLeave } from './hooks/useBeforeLeave.js'
+import { useFadein } from './hooks/useFadein.js'
 import './App.css'
 
 const App = () => {
@@ -55,6 +56,10 @@ const App = () => {
   const begForLife = () => console.log("Please Don't leave ")
   useBeforeLeave(begForLife)
 
+  /* useFadein */
+  const fadeinH2 = useFadein(2, 2)
+  const fadeinP = useFadein(5, 10)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
@@ -90,6 +95,12 @@ const App = () => {
       <section className="app-hooks">
         <button ref={protectClick}>Protect</button>
         <button ref={unProtectClick}>Unprotect</button>
+      </section>
+
+      {/* useFadein */}
+      <section className="app-hooks">
+        <h3 {...fadeinH2}>Suprise!!</h3>
+        <p {...fadeinP}>lorem ipsum....</p>
       </section>
     </div>
   )
