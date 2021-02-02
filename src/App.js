@@ -2,6 +2,7 @@ import React from 'react'
 import { useInput } from './hooks/useInput.js'
 import { useTabs } from './hooks/useTabs.js'
 import { useTitle } from './hooks/useTitle.js'
+import { useClick } from './hooks/useClick.js'
 import './App.css'
 
 const App = () => {
@@ -24,17 +25,25 @@ const App = () => {
 
   /* useTitle */
   const titleUpdater = useTitle('Loading...')
-  setTimeout(() => titleUpdater('Home'), 5000)
+  setTimeout(() => titleUpdater('Home'), 1000)
+
+  /* useClick */
+  const sayConor = () => {
+    console.log('Conor mcgregor')
+  }
+  const title = useClick(sayConor)
 
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
 
+      {/* useInput */}
       <section className="app-hooks">
         <h3 className="app-desc">useInput : </h3>
         <input placeholder="Name" {...name} />
       </section>
 
+      {/* useTab */}
       <section className="app-hooks">
         <h3 className="app-desc">useTab : </h3>
         {content.map((section, index) => (
@@ -43,6 +52,11 @@ const App = () => {
           </button>
         ))}
         {currentItem.content}
+      </section>
+
+      {/* useClick */}
+      <section className="app-hooks">
+        <h3 ref={title}>Suprise Suprise The King is back!</h3>
       </section>
     </div>
   )
