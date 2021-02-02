@@ -1,6 +1,7 @@
 import React from 'react'
 import { useInput } from './hooks/useInput.js'
 import { useTabs } from './hooks/useTabs.js'
+import { useTitle } from './hooks/useTitle.js'
 import './App.css'
 
 const App = () => {
@@ -20,6 +21,10 @@ const App = () => {
     },
   ]
   const { currentItem, changeItem } = useTabs(0, content)
+
+  /* useTitle */
+  const titleUpdater = useTitle('Loading...')
+  setTimeout(() => titleUpdater('Home'), 5000)
 
   return (
     <div className="app-main">
