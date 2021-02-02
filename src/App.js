@@ -7,6 +7,7 @@ import { useConfirm } from './hooks/useConfirm.js'
 import { usePreventLeave } from './hooks/usePreventLeave.js'
 import { useBeforeLeave } from './hooks/useBeforeLeave.js'
 import { useFadein } from './hooks/useFadein.js'
+import { useNetwork } from './hooks/useNetwork.js'
 import './App.css'
 
 const App = () => {
@@ -60,6 +61,12 @@ const App = () => {
   const fadeinH2 = useFadein(2, 2)
   const fadeinP = useFadein(5, 10)
 
+  /* useNetwork */
+  const handleNetworkChange = (online) => {
+    console.log(online ? '온라인 입니다.' : '오프라인 입니다.')
+  }
+  const online = useNetwork(handleNetworkChange)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
@@ -102,6 +109,9 @@ const App = () => {
         <h3 {...fadeinH2}>Suprise!!</h3>
         <p {...fadeinP}>lorem ipsum....</p>
       </section>
+
+      {/* useNetwork */}
+      <section className="app-hooks">{online ? 'online' : 'offline'}</section>
     </div>
   )
 }
