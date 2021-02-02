@@ -10,6 +10,7 @@ import { useFadein } from './hooks/useFadein.js'
 import { useNetwork } from './hooks/useNetwork.js'
 import { useScroll } from './hooks/useScroll.js'
 import { useFullscreen } from './hooks/useFullscreen.js'
+import { useNotification } from './hooks/useNotification.js'
 import './App.css'
 
 const App = () => {
@@ -82,6 +83,11 @@ const App = () => {
   const fullScreenButton = useClick(triggerFull)
   const exitFullScreenButton = useClick(exitFull)
 
+  /* useNotification */
+  const options = { body: '축하드립니다.' }
+  const triggerNotification = useNotification('합격하셨습니다.', options)
+  const notiButton = useClick(triggerNotification)
+
   return (
     <div className="app-main">
       <h1 className="app-title">React Simple Hooks</h1>
@@ -152,6 +158,11 @@ const App = () => {
           <button ref={exitFullScreenButton}>Exit Fullscreen!</button>
         </div>
         <button ref={fullScreenButton}>Make Fullscreen!</button>
+      </section>
+
+      {/* useNotification */}
+      <section className="app-hooks">
+        <button ref={notiButton}>Notification!</button>
       </section>
     </div>
   )
