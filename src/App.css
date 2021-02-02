@@ -17,6 +17,7 @@
 
 .app-hooks {
   display: flex;
+  margin-bottom: 30px;
 }
 
 .app-desc {
