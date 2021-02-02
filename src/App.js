@@ -5,6 +5,7 @@ import { useTitle } from './hooks/useTitle.js'
 import { useClick } from './hooks/useClick.js'
 import { useConfirm } from './hooks/useConfirm.js'
 import { usePreventLeave } from './hooks/usePreventLeave.js'
+import { useBeforeLeave } from './hooks/useBeforeLeave.js'
 import './App.css'
 
 const App = () => {
@@ -49,6 +50,10 @@ const App = () => {
   const { enablePrevent, disablePrevent } = usePreventLeave()
   const protectClick = useClick(enablePrevent)
   const unProtectClick = useClick(disablePrevent)
+
+  /* useBeforeLeave */
+  const begForLife = () => console.log("Please Don't leave ")
+  useBeforeLeave(begForLife)
 
   return (
     <div className="app-main">
